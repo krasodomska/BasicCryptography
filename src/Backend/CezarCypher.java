@@ -1,11 +1,15 @@
+package Backend;
+
 import java.util.stream.Collectors;
+
+import static Backend.Constants.*;
 
 public class CezarCypher {
     public static char magicCypher(int myLetter, int shift) {
-        if (myLetter > 64 && myLetter < 91) {
-            return changeLetter(myLetter, shift, 65);
-        } else if (myLetter > 96 && myLetter < 123) {
-            return changeLetter(myLetter, shift, 97);
+        if (myLetter >= startUpperCase && myLetter <= endUpperCase) {
+            return changeLetter(myLetter, shift, startUpperCase);
+        } else if (myLetter >= startLowerCase && myLetter <= endLowerCase) {
+            return changeLetter(myLetter, shift, startLowerCase);
         } else return (char) myLetter;
     }
 
@@ -19,7 +23,7 @@ public class CezarCypher {
     static char changeLetter(int myLetter, int shift, int letterSizeShift) {
         myLetter -= letterSizeShift;
         myLetter += shift;
-        myLetter = myLetter % 26;
+        myLetter = myLetter % (numberLettersInAlphabet + 1);
         myLetter += letterSizeShift;
         return (char) myLetter;
     }
