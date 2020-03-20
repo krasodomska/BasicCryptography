@@ -1,15 +1,13 @@
 package GUI;
 
+import Backend.CezarCypher;
+import Backend.VigenereCypher;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Backend.CezarCypher;
+public class VigenereCypherGUI extends GUI {
 
-public class CezarCypherGUI extends GUI {
-    @Override
-    protected void setFrameName(){
-        cypherName = "Cezar cypher";
-    }
     @Override
     protected void buttonAction() {
         //action listener submit
@@ -17,7 +15,7 @@ public class CezarCypherGUI extends GUI {
 
             @Override
             public void actionPerformed(ActionEvent arg) {
-                cypherEffect.setText(CezarCypher.textEncryption(textField.getText(), Integer.parseInt(shiftField.getText())));
+                cypherEffect.setText(VigenereCypher.textEncryption(textField.getText(),shiftField.getText()));
             }
         });
 
@@ -29,7 +27,12 @@ public class CezarCypherGUI extends GUI {
         });
     }
 
+    @Override
+    protected void setFrameName() {
+        cypherName = "Vigenere cypher";
+    }
+
     public static void main(String[] args) {
-        new CezarCypherGUI();
+        new VigenereCypherGUI();
     }
 }

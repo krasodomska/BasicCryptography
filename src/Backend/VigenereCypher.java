@@ -1,7 +1,5 @@
 package Backend;
 
-import GUI.CezarCypherGUI;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,26 +14,22 @@ public class VigenereCypher {
     }
 
     public static String textEncryption(String text, String key) {
-        text = prepareText(text);
-        key = prepareKey(key, text.length());
         List<String> myEncryptedText = new ArrayList<>();
-        for(int i = 0; i< text.length(); i++){
-            myEncryptedText.add(CezarCypher.textEncryption(Character.toString(text.charAt(i)), letterDifference(key.charAt(i))));
+        for (int i = 0, j = 0; i < text.length(); i++) {
+            char myLetter = text.charAt(i);
+            if ((myLetter >= startUpperCase && myLetter <= endUpperCase) || (myLetter >= startLowerCase && myLetter <= endLowerCase)) {
+                myEncryptedText.add(CezarCypher.textEncryption(Character.toString(myLetter), letterDifference(key.charAt(j % key.length()))));
+                j++;
+            } else {
+                myEncryptedText.add(Character.toString(myLetter));
+            }
         }
         return String.join("", myEncryptedText);
     }
 
-    private static String prepareText(String text) {
-        return text;
-    }
-
-    private static String prepareKey(String key, int length) {
-        return key;
-    }
-
     public static void main(String[] args) {
         System.out.println(
-        textEncryption("ABCZ", "aaaa")
+                textEncryption("AB CZ.", "ab")
         );
     }
 }

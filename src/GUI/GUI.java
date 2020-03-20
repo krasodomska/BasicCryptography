@@ -77,20 +77,4 @@ public abstract class GUI{
 
     protected abstract void buttonAction();
     protected abstract void setFrameName();
-//        //action listener submit
-//        submitButton.addActionListener(new ActionListener() {
-//
-//            @Override
-//            public void actionPerformed(ActionEvent arg) {
-//                cypherEffect.setText(Backend.CezarCypher.textEncryption(textField.getText(), Integer.parseInt(shiftField.getText())));
-//            }
-//        });
-//
-//        fromButton.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent arg) {
-//                fileImported.setText("File imported");
-//            }
-//        });
-
 }
