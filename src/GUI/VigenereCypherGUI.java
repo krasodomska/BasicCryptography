@@ -1,7 +1,6 @@
 package GUI;
 
-import Backend.CezarCypher;
-import Backend.VigenereCypher;
+import cypher.VigenereCypher;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

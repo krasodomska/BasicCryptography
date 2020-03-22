@@ -3,13 +3,14 @@ package GUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Backend.CezarCypher;
+import cypher.CezarCypher;
 
 public class CezarCypherGUI extends GUI {
     @Override
     protected void setFrameName(){
         cypherName = "Cezar cypher";
     }
+
     @Override
     protected void buttonAction() {
         //action listener submit

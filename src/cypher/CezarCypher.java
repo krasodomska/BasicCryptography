@@ -1,14 +1,13 @@
-package Backend;
+package cypher;
 
 import java.util.stream.Collectors;
-
-import static Backend.Constants.*;
+import static utils.Constants.*;
 
 public class CezarCypher {
     public static char magicCypher(int myLetter, int shift) {
-        if (myLetter >= startUpperCase && myLetter <= endUpperCase) {
+        if(Character.isUpperCase(myLetter)){
             return changeLetter(myLetter, shift, startUpperCase);
-        } else if (myLetter >= startLowerCase && myLetter <= endLowerCase) {
+        } else if (Character.isLowerCase(myLetter)) {
             return changeLetter(myLetter, shift, startLowerCase);
         } else return (char) myLetter;
     }
