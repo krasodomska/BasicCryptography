@@ -10,12 +10,12 @@ import static utils.Constants.numberOfASCII;
 
 public class RSACypher {
     List<Integer> primeNumber = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 71, 73, 79, 83, 89, 97);
-    int q;
-    int r;
-    int N;
-    int O;
-    int e;
-    int d;
+    public int q;
+    public int r;
+    public int N;
+    public int O;
+    public int e;
+    public int d;
 
     public RSACypher() {
         setQandR();
