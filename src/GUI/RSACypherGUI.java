@@ -6,11 +6,18 @@ import java.awt.event.ActionListener;
 
 public class RSACypherGUI extends GUI {
     JFrame popUpCypherEffect;
+    JLabel labelKeys;
 
     public RSACypherGUI() {
         //base frame settings
         keyField.setText("For this cypher it's unnecessary");
         setFrameName();
+
+        labelKeys = new JLabel();
+        labelKeys.setText("Enter text :");
+        labelKeys.setBounds(10, 10, 100, 100);
+
+
 
         //popup settings
         popUpCypherEffect = new JFrame(cypherName);
@@ -19,6 +26,8 @@ public class RSACypherGUI extends GUI {
         popUpCypherEffect.setSize(300, 350);
         popUpCypherEffect.setLayout(null);
         popUpCypherEffect.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        popUpCypherEffect.add(labelKeys);
     }
 
     @Override
