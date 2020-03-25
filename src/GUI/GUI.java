@@ -11,13 +11,12 @@ public abstract class GUI{
     JButton fromButton;
     JButton toButton;
     JLabel labelTextToCypher;
-    JLabel labelShift;
+    JLabel labelKey;
     JTextField textField;
-    JTextField shiftField;
+    JTextField keyField;
     JLabel cypherEffect;
     JLabel fileImported;
     String cypherName;
-
 
     GUI() {
         setFrameName();
@@ -36,15 +35,15 @@ public abstract class GUI{
         labelTextToCypher.setText("Enter text :");
         labelTextToCypher.setBounds(10, 10, 100, 100);
         //enter shift label
-        labelShift = new JLabel();
-        labelShift.setText("Enter key:");
-        labelShift.setBounds(10, 60, 100, 100);
+        labelKey = new JLabel();
+        labelKey.setText("Enter key:");
+        labelKey.setBounds(10, 60, 100, 100);
         //textField to enter text
         textField = new JTextField();
         textField.setBounds(110, 50, 130, 30);
         //textField to enter text
-        shiftField = new JTextField();
-        shiftField.setBounds(110, 100, 130, 30);
+        keyField = new JTextField();
+        keyField.setBounds(110, 100, 130, 30);
 
         //empty label which will show event after button clicked
         cypherEffect = new JLabel();
@@ -58,8 +57,8 @@ public abstract class GUI{
         frame.add(cypherEffect);
         frame.add(textField);
         frame.add(labelTextToCypher);
-        frame.add(labelShift);
-        frame.add(shiftField);
+        frame.add(labelKey);
+        frame.add(keyField);
         frame.add(fromButton);
         frame.add(toButton);
         frame.add(submitButton);

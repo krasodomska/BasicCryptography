@@ -18,7 +18,7 @@ public class CezarCypherGUI extends GUI {
 
             @Override
             public void actionPerformed(ActionEvent arg) {
-                cypherEffect.setText(CezarCypher.textEncryption(textField.getText(), Integer.parseInt(shiftField.getText())));
+                cypherEffect.setText(CezarCypher.textEncryption(textField.getText(), Integer.parseInt(keyField.getText())));
             }
         });
 
