@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import static utils.Constants.numberOfASCII;
 
 
@@ -42,7 +43,7 @@ public class RSACypher {
     }
 
     private void setD() {
-        while (e*d % O != 1){
+        while (e * d % O != 1) {
             d++;
         }
     }

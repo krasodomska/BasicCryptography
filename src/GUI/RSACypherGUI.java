@@ -1,8 +1,6 @@
 package GUI;
 
-import cypher.CezarCypher;
 import cypher.RSACypher;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,12 +32,11 @@ public class RSACypherGUI extends GUI {
 
         //popup settings
         popUpCypherEffect = new JFrame(cypherName);
-
-
         popUpCypherEffect.setSize(300, 350);
         popUpCypherEffect.setLayout(null);
         popUpCypherEffect.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        //add labels
         popUpCypherEffect.add(publicKeys);
         popUpCypherEffect.add(privateKeys);
         popUpCypherEffect.add(popUpEncryptedText);
@@ -60,8 +57,6 @@ public class RSACypherGUI extends GUI {
                 String decryptedText = cypher.textEncryption(textField.getText());
                 popUpEncryptedText.setText("<html>" + "Encrypted text: " + decryptedText + "</html>");
                 popUpDecryptedText.setText("Decrypted text: " + cypher.textDecryption(cypher.textEncryption(textField.getText()), cypher.N, cypher.d));
-                System.out.println(cypher.q);
-                System.out.println(cypher.r);
             }
         });
 
