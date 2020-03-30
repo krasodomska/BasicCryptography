@@ -2,8 +2,10 @@ package GUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import cypher.CezarCypher;
+import utils.FileHandler;
 
 public class CezarCypherGUI extends GUI {
     @Override
@@ -25,6 +27,12 @@ public class CezarCypherGUI extends GUI {
         fromButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg) {
+                try {
+                    cypherEffect.setText(CezarCypher.textEncryption(FileHandler.fileContent(), Integer.parseInt(keyField.getText())));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
                 fileImported.setText("File imported");
             }
         });
