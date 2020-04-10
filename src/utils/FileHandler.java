@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 
 public class FileHandler {
+    private static String createdFileName = "encryptedText.txt";
     public static String findFile() {
         FileDialog fd = new FileDialog(new JFrame());
         fd.setVisible(true);
@@ -33,16 +34,19 @@ public class FileHandler {
         BufferedReader br = new BufferedReader(new FileReader(file));
 
         StringBuilder textFromFile = new StringBuilder();
-        while (( br.readLine()) != null)
-            textFromFile.append(br.readLine()).append("\n");
+        String myLine = br.readLine();
+        while (myLine != null) {
+            textFromFile.append(myLine).append("\n");
+            myLine = br.readLine();
+        }
 
         return textFromFile.toString();
 
     }
 
-    public static void main(String[] args) {
+    private static void createTxtFile() {
         try {
-            File myObj = new File("filename.txt");
+            File myObj = new File(createdFileName);
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
@@ -50,19 +54,26 @@ public class FileHandler {
             }
         } catch (IOException e) {
 
-            System.out.println("An error occurred.");
+            System.out.println("Can not create file.");
             e.printStackTrace();
         }
+    }
 
+    private static void fillFileWithText(String text){
         try {
-            FileWriter myWriter = new FileWriter("filename.txt");
-            myWriter.write("Files in Java might be tricky,\n but it is fun enough!");
+            FileWriter myWriter = new FileWriter(createdFileName);
+            myWriter.write(text);
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            System.out.println("Can not wrote to the file.");
             e.printStackTrace();
         }
+    }
+
+    public static void createFilledFile(String text){
+        createTxtFile();
+        fillFileWithText(text);
     }
 }
 

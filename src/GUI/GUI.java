@@ -1,9 +1,13 @@
 package GUI;
 
+import utils.FileHandler;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public abstract class GUI{
     JFrame frame;
@@ -17,6 +21,7 @@ public abstract class GUI{
     JLabel cypherEffect;
     JLabel fileImported;
     String cypherName;
+    String cyphredText;
 
     GUI() {
         setFrameName();
@@ -74,6 +79,27 @@ public abstract class GUI{
         buttonAction();
     }
 
-    protected abstract void buttonAction();
+    protected void buttonAction() {
+        submitAction();
+        addFileAction();
+        createFileAction();
+    }
+
+    protected void createFileAction(){
+        toButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent arg) {
+                if (cyphredText != null) {
+                    FileHandler.createFilledFile(cyphredText);
+                    cypherEffect.setText("File created");
+                } else fileImported.setText("Import file or submit text");
+            }
+        });
+
+    }
+
+    protected abstract void addFileAction();
+    protected abstract void submitAction();
     protected abstract void setFrameName();
+
 }
