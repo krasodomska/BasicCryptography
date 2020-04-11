@@ -10,42 +10,49 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public abstract class GUI{
-    JFrame frame;
+    private JFrame frame;
     JButton submitButton;
     JButton fromButton;
-    JButton toButton;
-    JLabel labelTextToCypher;
-    JLabel labelKey;
+    private JButton toButton;
+    private JLabel labelTextToCypher;
+    private JLabel labelKey;
     JTextField textField;
     JTextField keyField;
     JLabel cypherEffect;
-    JLabel fileImported;
+    private JLabel fileImported;
     String cypherName;
     String cyphredText;
 
     GUI() {
         setFrameName();
         frame = new JFrame(cypherName);
+
         //submit button
         submitButton = new JButton("Submit");
         submitButton.setBounds(150, 200, 120, 40);
+
         //from file button
         fromButton = new JButton("From file");
         fromButton.setBounds(10, 150, 120, 40);
+
         //to file button
         toButton = new JButton("Create file");
         toButton.setBounds(150, 150, 120, 40);
+
         //enter text label
         labelTextToCypher = new JLabel();
         labelTextToCypher.setText("Enter text :");
         labelTextToCypher.setBounds(10, 10, 100, 100);
+
         //enter shift label
         labelKey = new JLabel();
         labelKey.setText("Enter key:");
         labelKey.setBounds(10, 60, 100, 100);
+
         //textField to enter text
         textField = new JTextField();
         textField.setBounds(110, 50, 130, 30);
+
         //textField to enter text
         keyField = new JTextField();
         keyField.setBounds(110, 100, 130, 30);
@@ -76,26 +83,18 @@ public abstract class GUI{
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        buttonAction();
-    }
-
-    protected void buttonAction() {
         submitAction();
         addFileAction();
         createFileAction();
     }
 
-    protected void createFileAction(){
-        toButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg) {
-                if (cyphredText != null) {
-                    FileHandler.createFilledFile(cyphredText);
-                    cypherEffect.setText("File created");
-                } else fileImported.setText("Import file or submit text");
-            }
+    private void createFileAction(){                      // private + lambda
+        toButton.addActionListener(arg -> {
+            if (cyphredText != null) {
+                FileHandler.createFilledFile(cyphredText);
+                cypherEffect.setText("File created");
+            } else fileImported.setText("Import file or submit text");
         });
-
     }
 
     protected abstract void addFileAction();

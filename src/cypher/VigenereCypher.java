@@ -17,18 +17,17 @@ public class VigenereCypher {
         for (int i = 0, j = 0; i < text.length(); i++) {
             char myLetter = text.charAt(i);
             if (Character.isLetter(myLetter)) {
-                myEncryptedText.add(CezarCypher.textEncryption(Character.toString(myLetter), letterDifference(key.charAt(j % key.length()))));
+                myEncryptedText.add(
+                        CezarCypher.textEncryption(
+                                Character.toString(myLetter),
+                                letterDifference(key.charAt(j % key.length()))
+                        )
+                );
                 j++;
             } else {
                 myEncryptedText.add(Character.toString(myLetter));
             }
         }
         return String.join("", myEncryptedText);
-    }
-
-    public static void main(String[] args) {
-        System.out.println(
-                textEncryption("AB CZ.", "zb")
-        );
     }
 }

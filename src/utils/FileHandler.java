@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class FileHandler {
     private static String createdFileName = "encryptedText.txt";
-    public static String findFile() {
+    private static String findFile() {           // private
         FileDialog fd = new FileDialog(new JFrame());
         fd.setVisible(true);
         File[] f = fd.getFiles();
@@ -50,7 +50,7 @@ public class FileHandler {
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
-                System.out.println("File already exists.");
+                System.out.println("File already exists.");                 // w ramach nauki przejdź na log4j albo coś podobnego
             }
         } catch (IOException e) {
 

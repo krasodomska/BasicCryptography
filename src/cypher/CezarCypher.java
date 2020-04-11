@@ -4,7 +4,7 @@ import java.util.stream.Collectors;
 import static utils.Constants.*;
 
 public class CezarCypher {
-    public static char magicCypher(int myLetter, int shift) {
+    private static char magicCypher(int myLetter, int shift) {
         if(Character.isUpperCase(myLetter)){
             return changeLetter(myLetter, shift, startUpperCase);
         } else if (Character.isLowerCase(myLetter)) {
@@ -19,7 +19,7 @@ public class CezarCypher {
         }).collect(Collectors.joining());
     }
 
-    static char changeLetter(int myLetter, int shift, int letterSizeShift) {
+    private static char changeLetter(int myLetter, int shift, int letterSizeShift) {
         myLetter -= letterSizeShift;
         myLetter += shift;
         myLetter = myLetter % (numberLettersInAlphabet + 1);

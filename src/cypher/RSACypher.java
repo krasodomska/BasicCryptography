@@ -10,29 +10,29 @@ import static utils.Constants.numberOfASCII;
 
 
 public class RSACypher {
-    List<Integer> primeNumber = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 71, 73, 79, 83, 89, 97);
-    public int q;
-    public int r;
+    private List<Integer> primeNumber = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 71, 73, 79, 83, 89, 97);
+    private int q;
+    private int r;
     public int N;
-    public int O;
+    private int O;
     public int e;
     public int d;
 
     public RSACypher() {
-        setQandR();
-        setN();
-        setE();
-        setD();
+        calculateQandR();
+        calculateN();
+        calculateE();
+        calculateD();
     }
 
-    private void setQandR() {
+    private void calculateQandR() {
         while (q * r < numberOfASCII || q == r) {
             q = primeNumber.get((int) (Math.random() * primeNumber.size()));
             r = primeNumber.get((int) (Math.random() * primeNumber.size()));
         }
     }
 
-    private void setE() {
+    private void calculateE() {
         O = (q - 1) * (r - 1);
         for (int i = 2; i < O; i++) {
             if (N % i != 0 && O % i != 0) {
@@ -42,13 +42,13 @@ public class RSACypher {
         }
     }
 
-    private void setD() {
+    private void calculateD() {
         while (e * d % O != 1) {
             d++;
         }
     }
 
-    private void setN() {
+    private void calculateN() {
         N = q * r;
     }
 

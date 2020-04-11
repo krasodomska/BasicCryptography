@@ -13,43 +13,36 @@ public class VigenereCypherGUI extends GUI {
 
     @Override
     protected void submitAction() {
-        submitButton.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent arg) {
-                String key = keyField.getText();
-                Pattern patternOnlyDigit = Pattern.compile("^[a-z]*$");
-                Matcher m = patternOnlyDigit.matcher(key);
-                if (m.find() && key.length() > 0) {
-                    cyphredText = VigenereCypher.textEncryption(textField.getText(), keyField.getText());
-                } else {
-                    cyphredText = "Key should be letter";
-                }
-                cypherEffect.setText(cyphredText);
+        submitButton.addActionListener(arg -> {
+            String key = keyField.getText();
+            Pattern patternOnlyDigit = Pattern.compile("^[a-z]*$");
+            Matcher m = patternOnlyDigit.matcher(key);
+            if (m.find() && key.length() > 0) {
+                cyphredText = VigenereCypher.textEncryption(textField.getText(), keyField.getText());
+            } else {
+                cyphredText = "Key should be letter";
             }
+            cypherEffect.setText(cyphredText);
         });
     }
 
     protected void addFileAction() {
-        fromButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg) {
-                String key = keyField.getText().toLowerCase();
-                Pattern patternOnlyDigit = Pattern.compile("^[a-z]*$");
-                Matcher m = patternOnlyDigit.matcher(key);
-                try {
-                    if (m.find() && key.length() > 0) {
-                        cyphredText = VigenereCypher.textEncryption(FileHandler.fileContent(), key);
+        fromButton.addActionListener(arg -> {
+            String key = keyField.getText().toLowerCase();
+            Pattern patternOnlyDigit = Pattern.compile("^[a-z]*$");
+            Matcher m = patternOnlyDigit.matcher(key);
+            try {
+                if (m.find() && key.length() > 0) {
+                    cyphredText = VigenereCypher.textEncryption(FileHandler.fileContent(), key);
 
-                    } else {
-                        cyphredText = "Key should be letter";
-                    }
-                    cypherEffect.setText(cyphredText);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                } else {
+                    cyphredText = "Key should be letter";
                 }
                 cypherEffect.setText(cyphredText);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+            cypherEffect.setText(cyphredText);
         });
     }
 

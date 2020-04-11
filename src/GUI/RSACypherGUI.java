@@ -9,13 +9,13 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class RSACypherGUI extends GUI {
-    JFrame popUpCypherEffect;
-    JLabel publicKeys;
-    JLabel privateKeys;
-    JLabel popUpEncryptedText;
-    JLabel popUpDecryptedText;
+    private JFrame popUpCypherEffect;       // privates
+    private JLabel publicKeys;
+    private JLabel privateKeys;
+    private JLabel popUpEncryptedText;
+    private JLabel popUpDecryptedText;
 
-    public RSACypherGUI() {
+    private RSACypherGUI() {
         //base frame settings
         keyField.setText("For this cypher it's unnecessary");
         setFrameName();
@@ -49,44 +49,36 @@ public class RSACypherGUI extends GUI {
     @Override
     protected void submitAction() {
 
-        submitButton.addActionListener(new ActionListener() {
+        submitButton.addActionListener(arg -> {
+            RSACypher cypher = new RSACypher();
+            popUpCypherEffect.setVisible(true);
+            publicKeys.setText("Public key: " + cypher.N + ", " + cypher.e);
+            privateKeys.setText("Private key: " + cypher.N + ", " + cypher.d);
+            String decryptedText = cypher.textEncryption(textField.getText());
+            popUpEncryptedText.setText("<html>" + "Encrypted text: " + decryptedText + "</html>");
+            popUpDecryptedText.setText("Decrypted text: " + cypher.textDecryption(cypher.textEncryption(textField.getText()), cypher.N, cypher.d));
 
-            @Override
-            public void actionPerformed(ActionEvent arg) {
-                RSACypher cypher = new RSACypher();
-                popUpCypherEffect.setVisible(true);
-                publicKeys.setText("Public key: " + cypher.N + ", " + cypher.e);
-                privateKeys.setText("Private key: " + cypher.N + ", " + cypher.d);
-                String decryptedText = cypher.textEncryption(textField.getText());
-                popUpEncryptedText.setText("<html>" + "Encrypted text: " + decryptedText + "</html>");
-                popUpDecryptedText.setText("Decrypted text: " + cypher.textDecryption(cypher.textEncryption(textField.getText()), cypher.N, cypher.d));
-
-                cyphredText = "Public key: " + cypher.N + ", " + cypher.e + "\n" + "Private key: " + cypher.N + ", " + cypher.d + "\n" + "Encrypted text: " + decryptedText + "\n" + "Decrypted text: " + cypher.textDecryption(cypher.textEncryption(textField.getText()), cypher.N, cypher.d);
-            }
+            cyphredText = "Public key: " + cypher.N + ", " + cypher.e + "\n" + "Private key: " + cypher.N + ", " + cypher.d + "\n" + "Encrypted text: " + decryptedText + "\n" + "Decrypted text: " + cypher.textDecryption(cypher.textEncryption(textField.getText()), cypher.N, cypher.d);
         });
     }
 
     @Override
     protected void addFileAction() {
-        fromButton.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent arg) {
-                RSACypher cypher = new RSACypher();
-                popUpCypherEffect.setVisible(true);
-                publicKeys.setText("Public key: " + cypher.N + ", " + cypher.e);
-                privateKeys.setText("Private key: " + cypher.N + ", " + cypher.d);
-                String decryptedText = null;
-                try {
-                    decryptedText = cypher.textEncryption(FileHandler.fileContent());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                popUpEncryptedText.setText("<html>" + "Encrypted text: " + decryptedText + "</html>");
-                popUpDecryptedText.setText("Decrypted text: " + cypher.textDecryption(decryptedText, cypher.N, cypher.d));
-
-                cyphredText = "Public key: " + cypher.N + ", " + cypher.e + "\n" + "Private key: " + cypher.N + ", " + cypher.d + "\n" + "Encrypted text: " + decryptedText + "\n" + "Decrypted text: " + cypher.textDecryption(cypher.textEncryption(textField.getText()), cypher.N, cypher.d);
+        fromButton.addActionListener(arg -> {
+            RSACypher cypher = new RSACypher();
+            popUpCypherEffect.setVisible(true);
+            publicKeys.setText("Public key: " + cypher.N + ", " + cypher.e);
+            privateKeys.setText("Private key: " + cypher.N + ", " + cypher.d);
+            String decryptedText = null;
+            try {
+                decryptedText = cypher.textEncryption(FileHandler.fileContent());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
+            popUpEncryptedText.setText("<html>" + "Encrypted text: " + decryptedText + "</html>");
+            popUpDecryptedText.setText("Decrypted text: " + cypher.textDecryption(decryptedText, cypher.N, cypher.d));
+
+            cyphredText = "Public key: " + cypher.N + ", " + cypher.e + "\n" + "Private key: " + cypher.N + ", " + cypher.d + "\n" + "Encrypted text: " + decryptedText + "\n" + "Decrypted text: " + cypher.textDecryption(cypher.textEncryption(textField.getText()), cypher.N, cypher.d);
         });
 
     }
